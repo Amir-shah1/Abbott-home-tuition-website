@@ -13,7 +13,7 @@
 - [Problem Statement](#-problem-statement--motivation)
 - [Core Features](#-core-features)
 - [Technology Stack](#️-technology-stack)
-- [System Architecture](#-system-architecture)
+- [System Architecture](#%EF%B8%8F-system-architecture)
 - [Database Schema](#-database-schema)
 - [Current Matching System](#-current-matching-system)
 - [Future Vision](#-future-enhancements--vision)
