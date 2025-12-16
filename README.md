@@ -147,6 +147,42 @@ Abbott Home Tuitions
     └── Subscribers Tab
 ```
 
+### Navigation Flow
+
+```mermaid
+graph TD
+    subgraph Public Pages
+        A[index.html] --> B[about.html]
+        A --> C[contact.html]
+        A --> D[blog.html]
+    end
+
+    subgraph Registration Portals
+        A --> E[student_form.php]
+        A --> F[teacher_form.php]
+    end
+
+    subgraph Admin Panel
+        A --> G[admin.php]
+    end
+
+    subgraph Form Handlers
+        C --> H[contact.php]
+        I[Newsletter Footer] --> J[newsletter.php]
+    end
+
+    subgraph Database
+        E --> K[(students)]
+        F --> L[(teachers)]
+        G --> M[(matches)]
+        H --> N[(contact_messages)]
+        J --> O[(newsletter_subscribers)]
+        G -.-> K
+        G -.-> L
+    end
+```
+
+
 ---
 
 ## 📊 Database Schema
