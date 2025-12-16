@@ -125,6 +125,12 @@ $matches = $conn->query("SELECT m.*, s.student_name, s.full_name as parent_name,
                          JOIN teachers t ON m.teacher_id = t.id 
                          ORDER BY m.match_date DESC");
 
+// Fetch Contact Messages
+$messages = $conn->query("SELECT * FROM contact_messages ORDER BY created_at DESC");
+
+// Fetch Newsletter Subscribers
+$subscribers = $conn->query("SELECT * FROM newsletter_subscribers ORDER BY id DESC");
+
 // Get statistics
 $total_students = $conn->query("SELECT COUNT(*) as count FROM students")->fetch_assoc()['count'];
 $total_teachers = $conn->query("SELECT COUNT(*) as count FROM teachers")->fetch_assoc()['count'];
@@ -425,6 +431,16 @@ $all_teachers = $conn->query("SELECT * FROM teachers");
                         <i class="fa fa-handshake mr-2"></i>Matches (<?php echo $total_matches; ?>)
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="queries-tab" data-toggle="tab" href="#queries">
+                        <i class="fa fa-envelope mr-2"></i>Queries (<?php echo $messages->num_rows; ?>)
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="subscribers-tab" data-toggle="tab" href="#subscribers">
+                        <i class="fa fa-paper-plane mr-2"></i>Subscribers (<?php echo $subscribers->num_rows; ?>)
+                    </a>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -567,6 +583,85 @@ $all_teachers = $conn->query("SELECT * FROM teachers");
                                         <td><span class="badge badge-<?php echo $match['status']; ?>"><?php echo ucfirst($match['status']); ?></span></td>
                                     </tr>
                                     <?php endwhile; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Queries Tab -->
+                <div class="tab-pane fade" id="queries">
+                    <div class="data-table">
+                        <h5 class="mb-3"><i class="fa fa-envelope text-primary mr-2"></i>Contact Queries</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    if ($messages->num_rows > 0):
+                                        $messages->data_seek(0);
+                                        while($msg = $messages->fetch_assoc()): 
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $msg['id']; ?></td>
+                                        <td><?php echo htmlspecialchars($msg['name']); ?></td>
+                                        <td><?php echo htmlspecialchars($msg['email']); ?></td>
+                                        <td><?php echo htmlspecialchars($msg['subject']); ?></td>
+                                        <td><small><?php echo nl2br(htmlspecialchars($msg['message'])); ?></small></td>
+                                        <td><small><?php echo date('M d, Y h:i A', strtotime($msg['created_at'])); ?></small></td>
+                                    </tr>
+                                    <?php 
+                                        endwhile;
+                                    else:
+                                    ?>
+                                    <tr><td colspan="6" class="text-center">No queries found.</td></tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subscribers Tab -->
+                <div class="tab-pane fade" id="subscribers">
+                    <div class="data-table">
+                        <h5 class="mb-3"><i class="fa fa-paper-plane text-primary mr-2"></i>Newsletter Subscribers</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Email Address</th>
+                                        <th>Subscribed Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    if ($subscribers->num_rows > 0):
+                                        $subscribers->data_seek(0);
+                                        while($sub = $subscribers->fetch_assoc()): 
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $sub['id']; ?></td>
+                                        <td><?php echo htmlspecialchars($sub['email']); ?></td>
+                                        <td><small><?php echo date('M d, Y h:i A', strtotime($sub['created_at'])); ?></small></td>
+                                    </tr>
+                                    <?php 
+                                        endwhile;
+                                    else:
+                                    ?>
+                                    <tr><td colspan="3" class="text-center">No subscribers yet.</td></tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>

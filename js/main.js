@@ -41,6 +41,62 @@
         loop: true,
         items: 1
     });
+
+    // Newsletter Validation
+    // Use delegated event binding to ensure it works even if elements are loaded dynamically or script runs early
+    $(document).on('click', '#newsletter-btn', function(e) {
+        e.preventDefault(); // Prevent default button behavior
+        
+        var newsletterInput = $('#newsletter-email');
+        var messageBox = $('#newsletter-message');
+        var email = newsletterInput.val().trim();
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Reset message
+        messageBox.text('').removeClass('text-success text-danger');
+
+        if(email === "") {
+            messageBox.text("Please enter your email.").addClass('text-danger');
+            return;
+        }
+
+        if(!emailPattern.test(email)) {
+            messageBox.text("Please enter a valid email address.").addClass('text-danger');
+            newsletterInput.val(''); 
+            return;
+        }
+
+        // Disable button to prevent double submit
+        var $btn = $(this);
+        $btn.prop('disabled', true);
+        $btn.text('Sending...');
+
+        $.ajax({
+            url: "newsletter.php",
+            type: "POST",
+            data: { email: email },
+            success: function(response) {
+                messageBox.text(response).addClass('text-success');
+                newsletterInput.val(''); 
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                 var msg = jqXHR.responseText;
+                 if(!msg) msg = "An error occurred. Please try again.";
+                 messageBox.text(msg).addClass('text-danger');
+            },
+            complete: function() {
+                $btn.prop('disabled', false);
+                $btn.text('Sign Up');
+                
+                // Clear success message after 5 seconds
+                if(messageBox.hasClass('text-success')) {
+                    setTimeout(function() {
+                        messageBox.text('').removeClass('text-success');
+                    }, 5000);
+                }
+            }
+        });
+    });
     
 })(jQuery);
 

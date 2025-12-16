@@ -12,7 +12,7 @@ $error_message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
-    
+
     // Check connection
     if ($conn->connect_error) {
         $error_message = "Connection failed: " . $conn->connect_error;
@@ -32,34 +32,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $budget_max = floatval($_POST['budget_max']);
         $learning_goals = $conn->real_escape_string($_POST['learning_goals']);
         $additional_info = $conn->real_escape_string($_POST['additional_info']);
-        
+
         // Insert into database
         $sql = "INSERT INTO students (full_name, email, phone, address, student_name, student_grade, subjects, frequency, duration, preferred_timing, budget_min, budget_max, learning_goals, additional_info) 
                 VALUES ('$full_name', '$email', '$phone', '$address', '$student_name', '$student_grade', '$subjects', '$frequency', '$duration', '$preferred_timing', $budget_min, $budget_max, '$learning_goals', '$additional_info')";
-        
+
         if ($conn->query($sql) === TRUE) {
             $success_message = "Registration successful! We will contact you soon.";
         } else {
             $error_message = "Error: " . $sql . "<br>" . $conn->error;
         }
-        
+
         $conn->close();
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Student Registration - Abbott Home Tuitions</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -114,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 10px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .form-section h4 {
@@ -129,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-shadow: 0 0 0 0.2rem rgba(255, 102, 0, 0.25);
         }
 
-        .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+        .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
             background-color: var(--primary);
             border-color: var(--primary);
         }
@@ -151,16 +152,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: red;
         }
 
-        #tuition{
+        #tuition {
             color: #44425A;
             font-weight: bold;
         }
 
-        #menu:hover{
+        #menu:hover {
             color: #e55a00;
         }
 
-        #menu{
+        #menu {
             color: #44425A;
             margin-top: 12px;
             font-size: 18px;
@@ -168,15 +169,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding-left: 14px;
         }
 
-        #subject{
+        #subject {
             background-color: #ffffff;
         }
 
-        #join{
+        #join {
             margin-top: 12px;
         }
 
-        #office{
+        #office {
             color: #44425A;
             font-weight: 600;
         }
@@ -189,14 +190,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row align-items-center py-4 px-xl-5">
             <div class="col-lg-3">
                 <a href="./index.html" class="text-decoration-none">
-                    <h2 class="m-0"  id="tuition"><span class="text-primary">Abbott </span>Tuitions</h2>
+                    <h2 class="m-0" id="tuition"><span class="text-primary">Abbott </span>Tuitions</h2>
                 </a>
             </div>
             <div class="col-lg-3 text-right">
                 <div class="d-inline-flex align-items-center">
                     <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
                     <div class="text-left">
-                        <h6 id= "office" class="font-weight-semi-bold mb-1">Our Office</h6>
+                        <h6 id="office" class="font-weight-semi-bold mb-1">Our Office</h6>
                         <small>Kaghan Colony Mandia, Abbottabad</small>
                     </div>
                 </div>
@@ -205,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="d-inline-flex align-items-center">
                     <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
                     <div class="text-left">
-                        <h6 id= "office" class="font-weight-semi-bold mb-1">Email Us</h6>
+                        <h6 id="office" class="font-weight-semi-bold mb-1">Email Us</h6>
                         <small>abbotthometuitions@gmail.com</small>
                     </div>
                 </div>
@@ -214,8 +215,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="d-inline-flex align-items-center">
                     <i class="fa fa-2x fa-phone text-primary mr-3"></i>
                     <div class="text-left">
-                        <h6 id= "office" class="font-weight-semi-bold mb-1">Call Us</h6>
-                        <a href="https://wa.me/+92 319 0964392"><small >+92 319 0964392</small></a>
+                        <h6 id="office" class="font-weight-semi-bold mb-1">Call Us</h6>
+                        <a href="https://wa.me/+92 319 0964392"><small>+92 319 0964392</small></a>
                     </div>
                 </div>
             </div>
@@ -227,11 +228,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a id="subject" class="d-flex align-items-center justify-content-between w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px; background-color: #f2f1f8;">
+                <a id="subject" class="d-flex align-items-center justify-content-between w-100 text-decoration-none"
+                    data-toggle="collapse" href="#navbar-vertical"
+                    style="height: 67px; padding: 0 30px; background-color: #f2f1f8;">
                     <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Subjects</h5>
                     <i class="fa fa-angle-down text-primary"></i>
                 </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
+                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
                     <div class="navbar-nav w-100">
                         <a href="" class="nav-item nav-link">Computer Science</a>
                         <a href="" class="nav-item nav-link">Quranic Studies</a>
@@ -250,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav py-0" >
+                        <div class="navbar-nav py-0">
                             <a id="menu" href="index.html" class="nav-item nav-link ml-2 mx-2">Home</a>
                             <a id="menu" href="about.html" class="nav-item nav-link ml-2 mx-2">About</a>
                             <a id="menu" href="student_form.php" class="nav-item nav-link ml-2 mx-2">Students Reg</a>
@@ -258,7 +262,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <a id="menu" href="contact.html" class="nav-item nav-link ml-2 mx-2">Contact</a>
                             <a id="menu" href="admin.php" class="nav-item nav-link ml-2 mx-2">Admin</a>
                         </div>
-                        <a id="join"class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="https://wa.me/+923190964392">Join Now</a>
+                        <a id="join" class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block"
+                            href="https://wa.me/+923190964392">Join Now</a>
                     </div>
                 </nav>
             </div>
@@ -278,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-12">
-                    <?php if($success_message): ?>
+                    <?php if ($success_message): ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Success!</strong> <?php echo $success_message; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -286,8 +291,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </button>
                         </div>
                     <?php endif; ?>
-                    
-                    <?php if($error_message): ?>
+
+                    <?php if ($error_message): ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error!</strong> <?php echo $error_message; ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -304,25 +309,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Full Name</label>
-                                        <input type="text" class="form-control" name="full_name" required placeholder="Enter your full name">
+                                        <input type="text" class="form-control" name="full_name" required
+                                            placeholder="Enter your full name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Email Address</label>
-                                        <input type="email" class="form-control" name="email" required placeholder="your.email@example.com">
+                                        <input type="email" class="form-control" name="email" required
+                                            placeholder="your.email@example.com">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Phone Number</label>
-                                        <input type="tel" class="form-control" name="phone" required placeholder="+92 XXX XXXXXXX">
+                                        <input type="tel" class="form-control" name="phone" required
+                                            placeholder="+92 XXX XXXXXXX">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Address</label>
-                                        <input type="text" class="form-control" name="address" required placeholder="Your complete address">
+                                        <input type="text" class="form-control" name="address" required
+                                            placeholder="Your complete address">
                                     </div>
                                 </div>
                             </div>
@@ -335,7 +344,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Student Name</label>
-                                        <input type="text" class="form-control" name="student_name" required placeholder="Student's full name">
+                                        <input type="text" class="form-control" name="student_name" required
+                                            placeholder="Student's full name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -371,31 +381,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="math" name="subjects[]" value="Mathematics">
+                                            <input type="checkbox" class="custom-control-input" id="math"
+                                                name="subjects[]" value="Mathematics">
                                             <label class="custom-control-label" for="math">Mathematics</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="science" name="subjects[]" value="Science">
+                                            <input type="checkbox" class="custom-control-input" id="science"
+                                                name="subjects[]" value="Science">
                                             <label class="custom-control-label" for="science">Science</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="language" name="subjects[]" value="Language Arts">
+                                            <input type="checkbox" class="custom-control-input" id="language"
+                                                name="subjects[]" value="Language Arts">
                                             <label class="custom-control-label" for="language">Language Arts</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="computer" name="subjects[]" value="Computer Science">
+                                            <input type="checkbox" class="custom-control-input" id="computer"
+                                                name="subjects[]" value="Computer Science">
                                             <label class="custom-control-label" for="computer">Computer Science</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="custom-control custom-checkbox mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="quran" name="subjects[]" value="Quranic Studies">
+                                            <input type="checkbox" class="custom-control-input" id="quran"
+                                                name="subjects[]" value="Quranic Studies">
                                             <label class="custom-control-label" for="quran">Quranic Studies</label>
                                         </div>
                                     </div>
@@ -446,13 +461,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Minimum Budget (PKR/hour)</label>
-                                        <input type="number" class="form-control" name="budget_min" required placeholder="e.g., 500" min="0" step="100">
+                                        <input type="number" class="form-control" name="budget_min" required
+                                            placeholder="e.g., 500" min="0" step="100">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="required">Maximum Budget (PKR/hour)</label>
-                                        <input type="number" class="form-control" name="budget_max" required placeholder="e.g., 1500" min="0" step="100">
+                                        <input type="number" class="form-control" name="budget_max" required
+                                            placeholder="e.g., 1500" min="0" step="100">
                                     </div>
                                 </div>
                             </div>
@@ -463,11 +480,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <h4><i class="fa fa-info-circle text-primary mr-2"></i>Additional Information</h4>
                             <div class="form-group">
                                 <label>Learning Goals</label>
-                                <textarea class="form-control" name="learning_goals" rows="3" placeholder="What are your learning objectives? (e.g., improve grades, exam preparation, concept clarity)"></textarea>
+                                <textarea class="form-control" name="learning_goals" rows="3"
+                                    placeholder="What are your learning objectives? (e.g., improve grades, exam preparation, concept clarity)"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Additional Comments</label>
-                                <textarea class="form-control" name="additional_info" rows="3" placeholder="Any special requirements or additional information you'd like to share"></textarea>
+                                <textarea class="form-control" name="additional_info" rows="3"
+                                    placeholder="Any special requirements or additional information you'd like to share"></textarea>
                             </div>
                         </div>
 
@@ -491,13 +510,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="col-md-6 mb-5">
                         <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Get In Touch</h5>
                         <p><i class="fa fa-map-marker-alt mr-2"></i>Kaghan Colony Mandia, Abbottabad</p>
-                        <a href="tel:+923190964392"><p style="color: white;"><i class="fa fa-phone-alt mr-2"></i>+92 319 0964392</p></a>
+                        <a href="tel:+923190964392">
+                            <p style="color: white;"><i class="fa fa-phone-alt mr-2"></i>+92 319 0964392</p>
+                        </a>
                         <p><i class="fa fa-envelope mr-2"></i>abbotthometuitions@gmail.com</p>
                         <div class="d-flex justify-content-start mt-4">
-                            <a class="btn btn-outline-light btn-square mr-2" href="https://whatsapp.com/channel/0029Vaowr1oDuMRnqFCS6i1i"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-square mr-2" href="https://whatsapp.com/channel/0029Vaowr1oDuMRnqFCS6i1i"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-square mr-2" href="https://whatsapp.com/channel/0029Vaowr1oDuMRnqFCS6i1i"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-light btn-square" href="https://wa.me/+923190964392"><i class="fab fa-whatsapp"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2"
+                                href="https://whatsapp.com/channel/0029Vaowr1oDuMRnqFCS6i1i"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2"
+                                href="https://whatsapp.com/channel/0029Vaowr1oDuMRnqFCS6i1i"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-square mr-2"
+                                href="https://whatsapp.com/channel/0029Vaowr1oDuMRnqFCS6i1i"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-outline-light btn-square" href="https://wa.me/+923190964392"><i
+                                    class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                     <div class="col-md-6 mb-5">
@@ -506,7 +534,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Mathematics</a>
                             <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Science</a>
                             <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Language Art</a>
-                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Computer Science</a>
+                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Computer
+                                Science</a>
                             <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Quranic Studies</a>
                         </div>
                     </div>
@@ -514,25 +543,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col-lg-5 col-md-12 mb-5">
                 <h5 class="text-primary text-uppercase mb-4" style="letter-spacing: 5px;">Newsletter</h5>
-                <p>Sign Up now by entering your email address 
-                    below to stay updated on educational news and events happening in 
-                    Abbottabad. We promise to keep you informed with relevant insights and 
+                <p>Sign Up now by entering your email address
+                    below to stay updated on educational news and events happening in
+                    Abbottabad. We promise to keep you informed with relevant insights and
                     opportunities!</p>
                 <div class="w-100">
                     <div class="input-group">
-                        <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Your Email Address">
+                        <input type="text" class="form-control border-light" style="padding: 30px;"
+                            placeholder="Your Email Address" id="newsletter-email">
                         <div class="input-group-append">
-                            <button class="btn btn-primary px-4">Sign Up</button>
+                            <button class="btn btn-primary px-4" id="newsletter-btn">Sign Up</button>
                         </div>
                     </div>
+                    <small id="newsletter-message"
+                        style="display: block; margin-top: 10px; font-weight: 600; min-height: 25px;"></small>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+    <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5"
+        style="border-color: rgba(256, 256, 256, .1) !important;">
         <div class="row">
             <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
-                <p class="m-0 text-white">Copyright&copy; 2025 <a href="#">abbotthometuitions</a> All Rights Reserved.</p>
+                <p class="m-0 text-white">Copyright&copy; 2025 <a href="#">abbotthometuitions</a> All Rights Reserved.
+                </p>
             </div>
             <div class="col-lg-6 text-center text-md-right">
                 <ul class="nav d-inline-flex">
@@ -565,9 +599,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Form Validation -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Form validation
-            $('#studentForm').on('submit', function(e) {
+            $('#studentForm').on('submit', function (e) {
                 // Check if at least one subject is selected
                 var subjectsChecked = $('input[name="subjects[]"]:checked').length;
                 if (subjectsChecked === 0) {
@@ -579,7 +613,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Validate budget
                 var budgetMin = parseFloat($('input[name="budget_min"]').val());
                 var budgetMax = parseFloat($('input[name="budget_max"]').val());
-                
+
                 if (budgetMax < budgetMin) {
                     e.preventDefault();
                     alert('Maximum budget must be greater than or equal to minimum budget.');
@@ -596,12 +630,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             });
             $('.back-to-top').click(function () {
-                $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+                $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
                 return false;
             });
 
             // Auto-hide alerts after 5 seconds
-            setTimeout(function() {
+            setTimeout(function () {
                 $('.alert').fadeOut('slow');
             }, 5000);
         });
@@ -616,5 +650,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             z-index: 99;
         }
     </style>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
 </body>
+
 </html>
