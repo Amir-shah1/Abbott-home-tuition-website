@@ -59,10 +59,11 @@ The platform functions on a data collection model where both students/parents an
 |------|---------|
 | **index.html** | Landing page with platform overview and key features |
 | **about.html** | Mission, vision, and information about Abbott Home Tuitions |
-| **student.html** | Student/Parent registration and profile creation form |
-| **teacher.html** | Tutor registration and profile creation form |
+| **student_form.php** | Student/Parent registration and profile creation form |
+| **teacher_form.php** | Tutor registration and profile creation form |
 | **blog.html** | Educational content, tips, and platform announcements |
 | **contact.html** | Contact information and support resources |
+| **admin.php** | Admin dashboard for managing registrations and matches |
 
 ### Subjects Offered
 - Mathematics
@@ -164,7 +165,7 @@ The platform functions on a data collection model where both students/parents an
 
 ### Student/Parent Journey
 1. Visit platform and explore available subjects
-2. Navigate to Student Registration (student.html)
+2. Navigate to Student Registration (student_form.php)
 3. Fill in tutoring requirements:
    - Subject(s) needed
    - Current grade/academic level
@@ -179,7 +180,7 @@ The platform functions on a data collection model where both students/parents an
 
 ### Tutor Journey
 1. Visit platform to explore opportunities
-2. Navigate to Tutor Registration (teacher.html)
+2. Navigate to Tutor Registration (teacher_form.php)
 3. Create professional profile:
    - Qualifications and certifications
    - Years of teaching experience
@@ -210,8 +211,8 @@ The platform functions on a data collection model where both students/parents an
 **Organization:** Abbott Home Tuitions  
 **Location:** Kaghan Colony Mandia, Abbottabad  
 **Email:** abbotthometuitions@gmail.com  
-**Phone:** +92 310 5894558  
-**WhatsApp:** +92 310 5894558
+**Phone:** +92 319 0964392  
+**WhatsApp:** +92 319 0964392
 
 ---
 
