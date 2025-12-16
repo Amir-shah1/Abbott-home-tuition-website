@@ -155,6 +155,7 @@ graph TD
         A[index.html] --> B[about.html]
         A --> C[contact.html]
         A --> D[blog.html]
+        A --> N[Newsletter]
     end
 
     subgraph Registration Portals
@@ -167,19 +168,22 @@ graph TD
     end
 
     subgraph Form Handlers
-        C --> H[contact.php]
-        I[Newsletter Footer] --> J[newsletter.php]
+        H[contact.php]
+        J[newsletter.php]
     end
 
     subgraph Database
         E --> K[(students)]
         F --> L[(teachers)]
         G --> M[(matches)]
-        H --> N[(contact_messages)]
-        J --> O[(newsletter_subscribers)]
+        H --> O[(contact_messages)]
+        J --> P[(newsletter_subscribers)]
         G -.-> K
         G -.-> L
     end
+
+    C --> H
+    N --> J
 ```
 
 
