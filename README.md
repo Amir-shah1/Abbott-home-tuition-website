@@ -76,7 +76,7 @@ Abbott Home Tuitions creates a **structured, transparent marketplace** that:
 | HTML5                  | -       | Semantic structure and markup        |
 | CSS3 / SCSS            | -       | Styling with Bootstrap theming       |
 | Bootstrap              | 4.4.1   | Responsive grid and UI components    |
-| JavaScript (jQuery)    | 3.4.1   | DOM manipulation and AJAX            |
+| JavaScript             | 3.4.1   | DOM manipulation                     |
 
 ### UI Libraries
 | Library                | Purpose                                        |
@@ -94,7 +94,6 @@ Abbott Home Tuitions creates a **structured, transparent marketplace** that:
 ### Security Measures
 - Password hashing using `password_hash()` and `password_verify()`
 - Input sanitization and escaping
-- Session-based authentication
 - Form validation (client & server-side)
 
 ---
@@ -302,7 +301,7 @@ graph LR
 ### Quick Setup
 ```bash
 # 1. Clone repository
-git clone https://github.com/username/abbott-home-tuitions.git
+git clone https://github.com/Amir-shah1/abbott-home-tuitions.git
 
 # 2. Place in web server directory
 # For XAMPP: C:\xampp\htdocs\abbott-home-tuitions
@@ -359,6 +358,7 @@ http://localhost/abbott-home-tuitions/setup_admin.php
 ## 👨‍💻 Developer
 
 **Amir Ali Shah**
+**SP24-BCS-018@cuiatd.edu.pk**
 
 | Category      | Details                                                        |
 |---------------|----------------------------------------------------------------|
